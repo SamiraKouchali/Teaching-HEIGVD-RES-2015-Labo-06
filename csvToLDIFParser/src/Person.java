@@ -1,5 +1,3 @@
-package ch.heigvd.res.labs.ldap;
-
 /**
  *
  * @author oliechti
@@ -12,12 +10,12 @@ public class Person {
     private String firstName;
     private String lastName;
     private Gender sex;
-    private String department;
+    private Departement department;
     private String function;
     private String email;
     private String phone;
     
-    public Person(String id, String firstName, String lastName, Gender sex, String department, String function, String email, String phone) {
+    public Person(String id, String firstName, String lastName, Gender sex, Departement department, String function, String email, String phone) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,7 +26,7 @@ public class Person {
         this.phone = phone;
     }
 
-    public String getDepartment() {
+    public Departement getDepartment() {
         return department;
     }
 
@@ -76,4 +74,24 @@ public class Person {
         return sb.toString();
     }   
     
+    public String toLdif() {   
+        StringBuilder s = new StringBuilder();
+        
+        s.append("dn: uid=" + getId() + ",ou=People,dc=heigvd,dc=ch\n");
+        s.append("changetype: add\n");
+        s.append("objectClass: top\n");
+        s.append("objectClass: person\n");
+        s.append("objectClass: organizationalPerson\n");
+        s.append("objectClass: inetOrgPerson\n");
+        s.append("uid: " + getId() + "\n");
+        s.append("givenName: " + getFirstName() + "\n");
+        s.append("sn: " + getLastName() + "\n");
+        s.append("cn: " + getFirstName() + " " + getLastName() + "\n");
+        s.append("mail: " + getEmail() + "\n");
+        s.append("phone:" + getPhone() + "\n");
+        s.append("departmentNumber: " + department.getName() + "\n");
+        s.append("employeeType: " + function + "\n");
+        
+        return s.toString();
+    }
 }
