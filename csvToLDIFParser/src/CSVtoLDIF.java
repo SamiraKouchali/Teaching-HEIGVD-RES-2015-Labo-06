@@ -39,6 +39,11 @@ public class CSVtoLDIF {
                 osPersons.write(p.toLdif() + "\n");
                 osPersons.flush();
             }
+            
+            // Ecriture du fichier des département (departments.ldif)
+            for (String key : departements.keySet())
+                osDepartments.write(departements.get(key).toLdif() + "\n");
+            osDepartments.flush();
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CSVtoLDIF.class.getName()).log(Level.SEVERE, null, ex);
