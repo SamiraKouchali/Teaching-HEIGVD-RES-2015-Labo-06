@@ -41,6 +41,8 @@ public class CSVtoLDIF {
             }
             
             // Ecriture du fichier des département (departments.ldif)
+            osDepartments = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("departments.ldif")), "UTF-8"));
+            
             for (String key : departements.keySet())
                 osDepartments.write(departements.get(key).toLdif() + "\n");
             osDepartments.flush();
@@ -53,7 +55,7 @@ public class CSVtoLDIF {
             try {
                 is.close();
                 osPersons.close();
-                //osDepartments.close();
+                osDepartments.close();
             } catch (IOException ex) {
                 Logger.getLogger(CSVtoLDIF.class.getName()).log(Level.SEVERE, null, ex);
             }

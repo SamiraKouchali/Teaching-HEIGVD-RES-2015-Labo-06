@@ -78,7 +78,8 @@ public class Person {
         StringBuilder s = new StringBuilder();
         
         s.append("dn: uid=" + getId() + ",ou=People,dc=heigvd,dc=ch\n");
-        s.append("changetype: add\n");
+        // Non valide avec le serveur LDAP du labo
+        //s.append("changetype: add\n");
         s.append("objectClass: top\n");
         s.append("objectClass: person\n");
         s.append("objectClass: organizationalPerson\n");
@@ -88,7 +89,7 @@ public class Person {
         s.append("sn: " + getLastName() + "\n");
         s.append("cn: " + getFirstName() + " " + getLastName() + "\n");
         s.append("mail: " + getEmail() + "\n");
-        s.append("phone:" + getPhone() + "\n");
+        s.append("homePhone:" + getPhone() + "\n");
         s.append("departmentNumber: " + department.getName() + "\n");
         s.append("employeeType: " + function + "\n");
         
