@@ -14,11 +14,10 @@ public class Departement {
     public String toLdif() {
         StringBuilder s = new StringBuilder();
 
-        s.append("dn: uid=" + nom + ",ou=Department,dc=heigvd,dc=ch\n");
+        s.append("dn: o=" + nom + ",ou=Departments,dc=heigvd,dc=ch\n");
         s.append("objectClass: top\n");
-        // Non valide avec le serveur LDAP du labo
-        //s.append("changetype: add\n");
-        s.append("uid: " + nom + "\n");
+        s.append("objectClass: organization\n");
+        s.append("o: " + nom + "\n");
 
         return s.toString();
     }

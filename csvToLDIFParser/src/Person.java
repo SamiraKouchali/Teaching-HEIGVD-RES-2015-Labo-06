@@ -77,9 +77,7 @@ public class Person {
     public String toLdif() {   
         StringBuilder s = new StringBuilder();
         
-        s.append("dn: uid=" + getId() + ",ou=People,dc=heigvd,dc=ch\n");
-        // Non valide avec le serveur LDAP du labo
-        //s.append("changetype: add\n");
+        s.append("dn: uid=" + getId() + ", ou=People, dc=heigvd, dc=ch\n");
         s.append("objectClass: top\n");
         s.append("objectClass: person\n");
         s.append("objectClass: organizationalPerson\n");
